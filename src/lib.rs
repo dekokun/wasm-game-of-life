@@ -75,6 +75,8 @@ impl Universe {
   pub fn render(&self) -> String {
     self.to_string()
   }
+}
+impl Universe {
   fn get_index(&self, row: u32, column: u32) ->usize {
     (row * self.width + column) as usize
   }
