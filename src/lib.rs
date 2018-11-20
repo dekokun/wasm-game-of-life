@@ -54,8 +54,8 @@ impl Universe {
     self.cells = next;
   }
   pub fn new() -> Universe {
-    let width = 512;
-    let height = 512;
+    let width = 128;
+    let height = 128;
 
     let cells = (0..width * height)
     .map(|i| {
@@ -75,6 +75,17 @@ impl Universe {
   pub fn render(&self) -> String {
     self.to_string()
   }
+
+  pub fn width(&self) -> u32 {
+    self.width
+  }
+  pub fn height(&self) -> u32 {
+    self.height
+  }
+  pub fn cells(&self) -> *const Cell {
+    self.cells.as_ptr()
+  }
+
 }
 impl Universe {
   fn get_index(&self, row: u32, column: u32) ->usize {
