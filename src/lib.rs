@@ -1,5 +1,6 @@
 extern crate cfg_if;
 extern crate wasm_bindgen;
+extern crate js_sys;
 
 mod utils;
 
@@ -58,8 +59,8 @@ impl Universe {
     let height = 128;
 
     let cells = (0..width * height)
-    .map(|i| {
-      if i%2 == 0 || i % 7 == 0 {
+    .map(|_| {
+      if js_sys::Math::random() < 0.5 {
         Cell::Alive
       } else {
         Cell::Dead
