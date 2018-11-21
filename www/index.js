@@ -16,13 +16,38 @@ canvas.width = (CELL_SIZE + 1) * width + 1;
 
 const ctx = canvas.getContext('2d');
 
+const playPauseButton = document.getElementById("play-pause");
+let animationId = null;
+
+const play = () => {
+  playPauseButton.textContent = "⏸";
+  renderLoop();
+};
+const pause = () => {
+  playPauseButton.textContent = "▶";
+  cancelAnimationFrame(animationId);
+  animationId = null;
+};
+
+const isPaused = () => {
+  return animationId === null;
+};
+
+playPauseButton.addEventListener("click", event => {
+  if (isPaused()) {
+    play();
+  } else {
+    pause();
+  }
+});
+
 const renderLoop = () => {
   universe.tick();
 
   drawGrid();
   drawCells();
 
-  requestAnimationFrame(renderLoop);
+  animationId = requestAnimationFrame(renderLoop);
 };
 
 const drawGrid = () => {
@@ -74,4 +99,4 @@ const drawCells = () => {
   ctx.stroke();
 };
 
-requestAnimationFrame(renderLoop);
+play();
