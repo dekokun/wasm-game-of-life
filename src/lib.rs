@@ -1,11 +1,18 @@
 extern crate cfg_if;
 extern crate wasm_bindgen;
 extern crate js_sys;
+extern crate web_sys;
 
 mod utils;
 
 use cfg_if::cfg_if;
 use wasm_bindgen::prelude::*;
+
+macro_rules! log {
+  ($($t:tt)* ) => {
+    web_sys::console::log_1(&format!( $($t) * )).into();
+  };
+}
 
 cfg_if! {
     // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
