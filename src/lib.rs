@@ -115,7 +115,7 @@ impl Universe {
     self.cells = cells;
   }
 
-  pub fn init(&mut self) {
+  pub fn reset(&mut self) {
     let cells = (0..self.width * self.height)
     .map(|_| {
       if js_sys::Math::random() < 0.5 {

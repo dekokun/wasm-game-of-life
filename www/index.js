@@ -26,9 +26,9 @@ allKillButton.addEventListener("click", event => {
   universe.all_kill();
 });
 
-const initButton = document.getElementById("init");
-initButton.addEventListener("click", event => {
-  universe.init();
+const resetButton = document.getElementById("reset");
+resetButton.addEventListener("click", event => {
+  universe.reset();
 });
 
 const play = () => {
