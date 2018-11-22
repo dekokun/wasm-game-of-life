@@ -126,6 +126,16 @@ impl Universe {
     }).collect();
     self.cells = cells;
   }
+
+  pub fn insert_glider(&mut self, row: u32, column: u32) {
+    let neighbor_indexes = self.neighbor_indexs(row, column);
+    let center_idx = self.get_index(row, column);
+    self.cells[center_idx] = Cell::Dead;
+    let neighbor_values = [Cell::Dead, Cell::Alive, Cell::Dead, Cell::Dead, Cell::Alive, Cell::Alive, Cell::Alive, Cell::Alive];
+    for (i, item) in neighbor_indexes.iter().enumerate() {
+      self.cells[*item] = neighbor_values[i];
+    }
+  }
 }
 impl Universe {
   fn get_index(&self, row: u32, column: u32) ->usize {
