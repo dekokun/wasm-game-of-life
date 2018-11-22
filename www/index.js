@@ -37,7 +37,7 @@ const isPaused = () => {
 };
 
 speedSlider.addEventListener("input", event => {
-  speed = speedSlider.value;
+  setSpeed(speedSlider.value);
 });
 const setSpeed = (value) => {
   speed = value;
