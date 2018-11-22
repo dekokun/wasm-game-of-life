@@ -114,6 +114,18 @@ impl Universe {
     }).collect();
     self.cells = cells;
   }
+
+  pub fn init(&mut self) {
+    let cells = (0..self.width * self.height)
+    .map(|_| {
+      if js_sys::Math::random() < 0.5 {
+        Cell::Alive
+      } else {
+        Cell::Dead
+      }
+    }).collect();
+    self.cells = cells;
+  }
 }
 impl Universe {
   fn get_index(&self, row: u32, column: u32) ->usize {
