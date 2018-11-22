@@ -21,6 +21,10 @@ let animationId = null;
 const speedSlider = document.getElementById("speed-slider");
 let speed = 0;
 
+const allKillButton = document.getElementById("all-kill");
+allKillButton.addEventListener("click", event => {
+  universe.all_kill();
+});
 
 const play = () => {
   playPauseButton.textContent = "⏸";

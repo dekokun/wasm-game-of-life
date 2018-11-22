@@ -107,6 +107,13 @@ impl Universe {
     self.cells[idx].toggle();
   }
 
+  pub fn all_kill(&mut self) {
+    let cells = (0..self.width * self.height)
+    .map(|_| {
+      Cell::Dead
+    }).collect();
+    self.cells = cells;
+  }
 }
 impl Universe {
   fn get_index(&self, row: u32, column: u32) ->usize {
