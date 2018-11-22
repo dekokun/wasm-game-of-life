@@ -18,6 +18,9 @@ const ctx = canvas.getContext('2d');
 
 const playPauseButton = document.getElementById("play-pause");
 let animationId = null;
+const speedSlider = document.getElementById("speed-slider");
+let speed = 0;
+
 
 const play = () => {
   playPauseButton.textContent = "⏸";
@@ -33,6 +36,14 @@ const isPaused = () => {
   return animationId === null;
 };
 
+speedSlider.addEventListener("input", event => {
+  speed = speedSlider.value;
+});
+const setSpeed = (value) => {
+  speed = value;
+  speedSlider.value = value;
+}
+
 playPauseButton.addEventListener("click", event => {
   if (isPaused()) {
     play();
@@ -42,7 +53,9 @@ playPauseButton.addEventListener("click", event => {
 });
 
 const renderLoop = () => {
-  universe.tick();
+  for(let i = 0; i < speed; i++) {
+    universe.tick();
+  }
 
   drawGrid();
   drawCells();
@@ -116,4 +129,5 @@ canvas.addEventListener("click", event => {
   drawCells();
 });
 
+setSpeed(1);
 play();
